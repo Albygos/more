@@ -121,7 +121,7 @@ body { --Color: #0053f1; }
 #ChatGPT_Image_Sep_21_2026_10_40_54_AM_2 { --f2w-order: 2; aspect-ratio: 1 / 1; border-radius: 0px; width: auto; height: 21px; position: absolute; top: 24.1px; left: 14px; overflow: hidden; }
 #__2 { object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0px; }
 #Container { --f2w-order: 0; border-radius: 0px; width: 100%; height: 7180px; position: absolute; top: 0px; left: 0px; right: 0px; overflow: hidden; }
-#home-image-slider-1 { background-blend-mode: normal; --f2w-order: 0; background-image: url("images/img_28_749d2746.jpg"); background-position: 50% center; background-size: cover; border-radius: 0px; width: 100%; height: 702px; position: absolute; top: 0px; left: 0px; right: 0px; }
+#home-image-slider-1 { background-blend-mode: normal; --f2w-order: 0; background-color: transparent; background-position: 50% center; background-size: cover; border-radius: 0px; width: 100%; height: 702px; position: absolute; top: 0px; left: 0px; right: 0px; }
 #Image { --f2w-order: 0; border-radius: 0px; width: 390px; height: 702px; position: absolute; top: 9px; left: 0px; overflow: hidden; }
 #__3 { width: 100%; height: 100%; position: absolute; inset: 0px; transform: scaleX(2.68); }
 #Heading_2_Seamless_Freight_Solutions_Global_Reach { text-align: left; color: rgb(255, 255, 255); --f2w-order: 1; background-clip: text; justify-content: flex-start; align-items: center; width: calc(100% - 70.4px); height: 69px; font-family: Poppins, system-ui, sans-serif; font-size: 27px; font-weight: 500; line-height: 32px; display: inline-flex; position: absolute; top: 349px; left: 19.5px; right: 50.9px; }
@@ -298,7 +298,7 @@ body { --Color: #0053f1; }
 #__117 { background-clip: text; }
 #arrow_right_circle_svg { --f2w-order: 3; aspect-ratio: 1 / 1; border-radius: 0px; width: 5.9%; height: auto; position: absolute; top: 210.3px; left: 45%; right: 49.1%; overflow: hidden; }
 #arrow_right_circle_svg_0 { --f2w-order: 0; width: 23px; height: 23px; position: absolute; top: calc(50% - 11.5px); left: calc(50% - 11.5px); }
-#promo-video-container { background-blend-mode: normal; --f2w-order: 4; background-image: url("images/img_28_749d2746.jpg"); background-position: 50% center; background-size: cover; border-radius: 20px; width: 85%; height: 200px; position: absolute; top: 268.3px; left: 7.5%; right: 7.5%; overflow: hidden; }
+#promo-video-container { background-blend-mode: normal; --f2w-order: 4; background-color: transparent; background-position: 50% center; background-size: cover; border-radius: 20px; width: 85%; height: 200px; position: absolute; top: 268.3px; left: 7.5%; right: 7.5%; overflow: hidden; }
 #Container_7 { --f2w-order: 0; border-radius: 0px; width: 331.5px; height: 200px; position: absolute; top: 0px; left: 0px; overflow: hidden; }
 #promo_video_new_mp4 { --f2w-order: 0; aspect-ratio: 2.21 / 1; border-radius: 0px; width: auto; height: 150px; position: absolute; top: 25px; left: 0px; overflow: hidden; }
 #__15_0 { --f2w-order: 0; border-radius: 0px; width: 63px; height: 63px; position: absolute; top: 12.7px; left: 133.8px; overflow: hidden; }
@@ -583,7 +583,7 @@ body { --Color: #0053f1; }
 #__6 { width: 100%; height: 100%; position: absolute; inset: 0px; }
 #__8 { --f2w-order: 6; border-radius: 0px; width: 49px; height: 49px; position: absolute; top: 23px; left: 138px; overflow: hidden; }
 #__9 { width: 100%; height: 100%; position: absolute; inset: 0px; }
-#home-image-slider-1 { background-blend-mode: normal; --f2w-order: 0; background-image: url("images/img_28_749d2746.jpg"); background-position: 50% center; background-size: cover; border-radius: 0px; width: 100%; height: 1200px; position: absolute; top: 0px; left: 0px; right: 0px; }
+#home-image-slider-1 { background-blend-mode: normal; --f2w-order: 0; background-color: transparent; background-position: 50% center; background-size: cover; border-radius: 0px; width: 100%; height: 1200px; position: absolute; top: 0px; left: 0px; right: 0px; }
 #Image_0 { --f2w-order: 0; border-radius: 0px; width: 1920px; height: 1200px; position: absolute; top: 0px; left: 0px; overflow: hidden; }
 #__17 { --f2w-order: 0; border-radius: 0px; width: 1920px; height: 1284px; position: absolute; top: -42px; left: 0px; overflow: hidden; }
 #__10 { width: 100%; height: 100%; position: absolute; inset: 0px; }
@@ -1454,3 +1454,19 @@ html, body { overflow-x: hidden; }
 #__x2d_body { overflow: visible !important;  }
 .video-marquee-track iframe { pointer-events: none; will-change: transform; transform: translateZ(0); }
 .salient-marquee-track, .video-marquee-track, .tools-marquee-track { will-change: transform; backface-visibility: hidden; transform: translateZ(0); }
+
+/* Main page gallery scroll animation */
+.scroll-anim-item {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-anim-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+

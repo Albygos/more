@@ -163,3 +163,78 @@ if (document.readyState === 'loading') {
 } else {
   initCustomSlideshows();
 }
+
+// Handle Navbar Navigation for duplicate IDs (mobile vs desktop logic)
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#navbar-container a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            const isMobile = window.innerWidth <= 768;
+            const activeWrapper = isMobile 
+                ? document.querySelector('.responsive-mobile') 
+                : document.querySelector('.responsive-desktop');
+
+            if (targetId === '#') {
+                const scrollRoot = isMobile 
+                    ? activeWrapper.querySelector('#__x2d_body') 
+                    : (activeWrapper.querySelector('#__0') || activeWrapper.querySelector('#__x2d_body') || activeWrapper.firstElementChild);
+                if (scrollRoot && typeof scrollRoot.scrollTo === 'function') {
+                    scrollRoot.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                return;
+            }
+            
+            if (activeWrapper) {
+                const target = activeWrapper.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+});
+
+function initMainGalleryScrollAnimation() {
+  const galleryItems = document.querySelectorAll('#Group_45 > div, #Group_42 > div, #Group_43 > div, #Group_44 > div, #Group_47 > div');
+  
+  if (galleryItems.length === 0) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  galleryItems.forEach((item, idx) => {
+    item.classList.add('scroll-anim-item');
+    item.style.transitionDelay = `${(idx % 4) * 100}ms`;
+    observer.observe(item);
+  });
+
+  galleryItems.forEach(item => {
+    item.addEventListener('transitionend', function(e) {
+      if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
+        this.style.transitionDelay = '0s';
+      }
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMainGalleryScrollAnimation);
+} else {
+  initMainGalleryScrollAnimation();
+}

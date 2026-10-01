@@ -52,4 +52,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
   });
+  // Scroll Animation using IntersectionObserver
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  gridItems.forEach((item, idx) => {
+    // Add staggered delay based on column (assuming roughly 3 columns)
+    item.style.transitionDelay = `${(idx % 3) * 100}ms, ${(idx % 3) * 100}ms, 0s, 0s`;
+    observer.observe(item);
+  });
+
+  // Clean up transition delay after animation completes so hover effects are instant
+  gridItems.forEach(item => {
+    item.addEventListener('transitionend', function(e) {
+      if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
+        this.style.transitionDelay = '0s';
+      }
+    });
+  });
 });
